@@ -1,2 +1,562 @@
-# Mark-Mebel
-Мебель для жизни и для работы. От квартир до офисов, от салонов до лофтов. Мы создаём универсальные предметы, которые выдерживают высокие нагрузки и радуют глаз каждый день. Индивидуальный подход к каждому проекту - будь то ваш домашний уголок или коммерческое пространство
+#index.html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLEXLIFE — мебель для жизни и работы</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #faf9f7;
+      color: #1e1e1e;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- HEADER ---------- */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid #e8e5e0;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: #a57c5c; }
+    .nav {
+      display: flex;
+      gap: 32px;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .nav a {
+      text-decoration: none;
+      color: #1e1e1e;
+      transition: 0.2s;
+    }
+    .nav a:hover { color: #a57c5c; }
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .cart-count {
+      background: #1e1e1e;
+      color: #fff;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -10px;
+      right: -14px;
+    }
+
+    /* ---------- BANNER ---------- */
+    .banner {
+      padding: 72px 0 48px;
+      text-align: center;
+    }
+    .banner h1 {
+      font-size: 52px;
+      font-weight: 300;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      max-width: 800px;
+      margin: 0 auto 12px;
+    }
+    .banner h1 strong { font-weight: 700; }
+    .banner p {
+      font-size: 20px;
+      color: #6b6b6b;
+      font-weight: 300;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ---------- CATALOG GRID ---------- */
+    .section-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 56px 0 24px;
+      letter-spacing: -0.3px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px 24px;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 20px 20px 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      transition: 0.25s ease;
+      border: 1px solid #f0ede8;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.05);
+      border-color: #d9d2c5;
+    }
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 0.9;
+      background: #edeae4;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #a79a88;
+      font-weight: 300;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      background-image: repeating-linear-gradient(45deg, #e3ddd4 0px, #e3ddd4 2px, #f1ede6 2px, #f1ede6 6px);
+    }
+    .product-name {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+    .product-price {
+      font-size: 22px;
+      font-weight: 400;
+      color: #1e1e1e;
+      margin: 6px 0 12px;
+    }
+    .product-price span {
+      font-size: 15px;
+      color: #888;
+      font-weight: 300;
+    }
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: none;
+      padding: 12px 16px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s;
+      flex: 1;
+      min-width: 100px;
+      text-align: center;
+      background: #f0ede8;
+      color: #1e1e1e;
+    }
+    .btn-primary {
+      background: #1e1e1e;
+      color: #fff;
+    }
+    .btn-primary:hover { background: #a57c5c; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #d0cbc2;
+    }
+    .btn-outline:hover {
+      background: #1e1e1e;
+      border-color: #1e1e1e;
+      color: #fff;
+    }
+
+    /* ---------- NEW COLLECTION BLOCK ---------- */
+    .collection-block {
+      margin: 72px 0 56px;
+      padding: 48px 40px;
+      background: #fff;
+      border-radius: 32px;
+      border: 1px solid #f0ede8;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+    .collection-block h2 {
+      font-size: 34px;
+      font-weight: 300;
+      letter-spacing: -0.5px;
+    }
+    .collection-block h2 strong { font-weight: 700; }
+    .collection-block p {
+      max-width: 480px;
+      color: #4f4a43;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    .collection-block .btn {
+      flex: 0 0 auto;
+      padding: 14px 40px;
+    }
+
+    /* ---------- STATS ---------- */
+    .stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      padding: 40px 0 20px;
+      border-top: 1px solid #e8e5e0;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 40px;
+      font-weight: 300;
+      letter-spacing: -1px;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      padding: 40px 0 32px;
+      border-top: 1px solid #e8e5e0;
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: #6b6b6b;
+      font-size: 14px;
+    }
+    .footer a {
+      color: #1e1e1e;
+      text-decoration: none;
+      margin-left: 24px;
+    }
+    .footer a:hover { color: #a57c5c; }
+
+    /* ---------- CART SIDEBAR (простой попап) ---------- */
+    .cart-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(3px);
+      z-index: 1000;
+      justify-content: flex-end;
+    }
+    .cart-overlay.open { display: flex; }
+    .cart-panel {
+      background: #fff;
+      width: 380px;
+      max-width: 90%;
+      padding: 32px 24px;
+      height: 100%;
+      overflow-y: auto;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.05);
+    }
+    .cart-panel h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-panel .close {
+      cursor: pointer;
+      font-size: 28px;
+      line-height: 1;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-total {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 24px 0 16px;
+    }
+    .cart-empty { color: #999; }
+
+    /* ---------- Модалка "Индивидуальный проект" ---------- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(2px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #fff;
+      max-width: 540px;
+      width: 90%;
+      padding: 40px 32px;
+      border-radius: 28px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    .modal-box .close-modal {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 30px;
+      cursor: pointer;
+      color: #aaa;
+    }
+    .modal-box h2 { font-size: 26px; font-weight: 600; margin-bottom: 8px; }
+    .modal-box p { color: #6b6b6b; margin-bottom: 24px; }
+    .modal-box input, .modal-box textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 15px;
+      margin-bottom: 14px;
+      font-family: inherit;
+    }
+    .modal-box textarea { min-height: 90px; resize: vertical; }
+    .modal-box .btn-primary { width: 100%; padding: 16px; font-size: 17px; }
+
+    /* ---------- UTILITIES ---------- */
+    .text-center { text-align: center; }
+    .mt-20 { margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">FLEX<span>LIFE</span></div>
+    <div class="nav">
+      <a href="#">Каталог</a>
+      <a href="#">О нас</a>
+      <a href="#">Контакты</a>
+    </div>
+    <div class="cart-icon" id="cartToggle">
+      🛒
+      <span class="cart-count" id="cartCount">0</span>
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <section class="banner">
+    <h1>
+      Designer furniture<br />
+      <strong>is a balance of comfort and aesthetics</strong>
+    </h1>
+    <p>Индивидуальные решения для дома, офиса и коммерческих пространств</p>
+  </section>
+
+  <!-- CATALOG -->
+  <h2 class="section-title">Каталог</h2>
+  <div class="grid" id="productGrid">
+    <!-- Товары будут добавлены через JS, но для наглядности продублируем статикой -->
+  </div>
+
+  <!-- NEW COLLECTION -->
+  <div class="collection-block">
+    <div>
+      <h2><strong>New collection</strong><br />Elegance</h2>
+      <p>Discover the collection where each piece is a blend of strict functionality and emotional design.</p>
+      <p style="margin-top: 8px; color: #a57c5c;">Natural Phenomena — handcrafted from eco‑friendly materials.</p>
+    </div>
+    <button class="btn btn-primary" onclick="alert('Переход на страницу новой коллекции')">Смотреть все</button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-number">15</div>
+      <div class="stat-label">лет на рынке</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">120+</div>
+      <div class="stat-label">реализованных проектов</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">индивидуальный подход</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>© 2026 FLEXLIFE — мебель для жизни и работы</div>
+    <div>
+      <a href="#">Политика конфиденциальности</a>
+      <a href="#">+7 (495) 123-45-67</a>
+    </div>
+  </footer>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-panel">
+    <h3>Корзина <span class="close" id="cartClose">&times;</span></h3>
+    <div id="cartItems"></div>
+    <div class="cart-total" id="cartTotal">Итого: $0</div>
+    <button class="btn btn-primary" style="width:100%;" onclick="alert('Оформление заказа (переход на оплату)')">Оформить заказ</button>
+  </div>
+</div>
+
+<!-- MODAL FOR INDIVIDUAL REQUEST -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <span class="close-modal" id="modalClose">&times;</span>
+    <h2>Индивидуальный проект</h2>
+    <p>Заполните форму, и мы предложим вариант под вашу задачу с учётом нагрузок, материалов и бюджета.</p>
+    <input type="text" placeholder="Ваше имя" />
+    <input type="email" placeholder="E-mail" />
+    <input type="tel" placeholder="Телефон" />
+    <textarea placeholder="Опишите, что вам нужно (пространство, размеры, стиль)"></textarea>
+    <button class="btn btn-primary" onclick="alert('Спасибо! Мы свяжемся с вами в течение 2 часов.'); document.getElementById('modalOverlay').classList.remove('open')">Отправить заявку</button>
+  </div>
+</div>
+
+<script>
+  // ---------- ТОВАРЫ (из примера) ----------
+  const products = [
+    { name: 'TREE', price: 4300 },
+    { name: 'VOLCANO', price: 1900 },
+    { name: 'OCEAN', price: 3070 },
+    { name: 'MOON', price: 1050 },
+    { name: 'HISTORY', price: 2290 },
+    { name: 'ECLIPSE', price: 1560 },
+    { name: 'SAND', price: 2600 },
+    { name: 'MIST', price: 5900 },
+    { name: 'SCAUR', price: 3300 }
+  ];
+
+  const grid = document.getElementById('productGrid');
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="product-image">${p.name}</div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-price">$${p.price.toLocaleString()} <span>USD</span></div>
+      <div class="card-actions">
+        <button class="btn btn-primary add-to-cart" data-name="${p.name}" data-price="${p.price}">В корзину</button>
+        <button class="btn btn-outline individual-btn" data-name="${p.name}">Запросить свой вариант</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // ---------- КОРЗИНА ----------
+  let cart = [];
+  const cartCount = document.getElementById('cartCount');
+  const cartItems = document.getElementById('cartItems');
+  const cartTotal = document.getElementById('cartTotal');
+
+  function updateCart() {
+    cartCount.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+    if (cart.length === 0) {
+      cartItems.innerHTML = '<div class="cart-empty">Корзина пуста</div>';
+      cartTotal.textContent = 'Итого: $0';
+      return;
+    }
+    let html = '';
+    let total = 0;
+    cart.forEach((item, idx) => {
+      total += item.price * item.qty;
+      html += `
+        <div class="cart-item">
+          <span>${item.name} × ${item.qty}</span>
+          <span>$${(item.price * item.qty).toLocaleString()}</span>
+        </div>
+      `;
+    });
+    cartItems.innerHTML = html;
+    cartTotal.textContent = `Итого: $${total.toLocaleString()}`;
+  }
+
+  // Добавление в корзину
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('add-to-cart')) {
+      const name = e.target.dataset.name;
+      const price = parseInt(e.target.dataset.price);
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCart();
+      // открыть корзину
+      document.getElementById('cartOverlay').classList.add('open');
+    }
+  });
+
+  // Открыть/закрыть корзину
+  document.getElementById('cartToggle').addEventListener('click', () => {
+    document.getElementById('cartOverlay').classList.toggle('open');
+  });
+  document.getElementById('cartClose').addEventListener('click', () => {
+    document.getElementById('cartOverlay').classList.remove('open');
+  });
+  document.getElementById('cartOverlay').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+
+  // ---------- МОДАЛКА "ИНДИВИДУАЛЬНЫЙ" ----------
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('individual-btn')) {
+      const name = e.target.dataset.name;
+      // можно подставить имя товара в форму
+      document.querySelector('.modal-box textarea').placeholder = `Хочу индивидуальный вариант для "${name}". Опишите ваш проект...`;
+      document.getElementById('modalOverlay').classList.add('open');
+    }
+  });
+  document.getElementById('modalClose').addEventListener('click', () => {
+    document.getElementById('modalOverlay').classList.remove('open');
+  });
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+</script>
+</body>
+</html>
